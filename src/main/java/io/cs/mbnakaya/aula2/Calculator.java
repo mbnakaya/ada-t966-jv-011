@@ -37,3 +37,5 @@ class Calculator {
         return List.of(x1, x2);
     }
 }
+
+class DeltaHasNoSqrtException extends RuntimeException { }
