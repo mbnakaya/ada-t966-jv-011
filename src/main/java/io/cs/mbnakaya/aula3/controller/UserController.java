@@ -4,13 +4,13 @@ import io.cs.mbnakaya.aula3.model.User;
 import io.cs.mbnakaya.aula3.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.Valid;
 import java.util.List;
 
-@Controller("/v1/users")
+@RestController
+@RequestMapping("/v1/users")
 public class UserController {
 
     private final UserService service;
@@ -20,13 +20,13 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody @NotNull User body) {
+    public ResponseEntity<User> create(@Valid @RequestBody User body) {
         var result = this.service.create(body);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable @NotNull Long id) {
+    public ResponseEntity<User> getById(@PathVariable Long id) {
         var result = this.service.getById(id);
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@RequestParam @NotNull Long id) {
+    public ResponseEntity<Object> delete(@PathVariable Long id) {
         this.service.delete(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
