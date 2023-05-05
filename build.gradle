@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.11'
     id 'io.spring.dependency-management' version '1.1.0'
+    id 'jacoco'
 }
 
 group = 'io.cs.mbnakaya'
@@ -28,4 +29,36 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy(tasks.named('jacocoTestReport'))
+//    finalizedBy(tasks.named('jacocoTestCoverageVerification'))
+}
+
+def exclusions = [
+        'io/cs/mbnakaya/aula2/*.*'
+]
+
+tasks.named('jacocoTestReport') {
+    dependsOn(tasks.named('test'))
+    reports {
+        html.required.set(true)
+        html.outputLocation.set(file("$buildDir/reports/coverage"))
+    }
+//    classDirectories.setFrom(files(classDirectories.files.collect {
+//        fileTree(dir: it, exclude: exclusions)
+//    }))
+}
+
+tasks.named('jacocoTestCoverageVerification') {
+    dependsOn(tasks.named('test'))
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.1
+                value = 'COVEREDRATIO'
+            }
+        }
+    }
+    classDirectories.setFrom(files(classDirectories.files.collect {
+        fileTree(dir: it, exclude: exclusions)
+    }))
 }
