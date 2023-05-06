@@ -1,13 +1,17 @@
 package io.cs.mbnakaya.aula4;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+@Getter
 public class ShopCart {
 
-    private List<Item> items;
+    private final List<Item> items = new ArrayList<>(0);
 
-    public Integer calculateTotal() { return null ;}
+    public Integer calculateTotal() {
+        if (items.isEmpty()) throw new EmptyShopCartException();
+        return items.stream().mapToInt(Item::getValue).reduce(0, Integer::sum);
+    }
 }

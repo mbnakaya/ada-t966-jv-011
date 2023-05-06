@@ -30,7 +30,7 @@ dependencies {
 test {
     useJUnitPlatform()
     finalizedBy(tasks.named('jacocoTestReport'))
-//    finalizedBy(tasks.named('jacocoTestCoverageVerification'))
+    finalizedBy(tasks.named('jacocoTestCoverageVerification'))
 }
 
 def exclusions = [
@@ -43,9 +43,9 @@ tasks.named('jacocoTestReport') {
         html.required.set(true)
         html.outputLocation.set(file("$buildDir/reports/coverage"))
     }
-//    classDirectories.setFrom(files(classDirectories.files.collect {
-//        fileTree(dir: it, exclude: exclusions)
-//    }))
+    classDirectories.setFrom(files(classDirectories.files.collect {
+        fileTree(dir: it, exclude: exclusions)
+    }))
 }
 
 tasks.named('jacocoTestCoverageVerification') {
