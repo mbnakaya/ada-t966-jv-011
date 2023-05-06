@@ -12,6 +12,9 @@ public class ShopCart {
 
     public Integer calculateTotal() {
         if (items.isEmpty()) throw new EmptyShopCartException();
-        return items.stream().mapToInt(Item::getValue).reduce(0, Integer::sum);
+        return items.stream().mapToInt(item -> {
+            if (item.getInStock()) return item.getValue();
+            throw new ItemOutOfStockException();
+        }).reduce(0, Integer::sum);
     }
 }

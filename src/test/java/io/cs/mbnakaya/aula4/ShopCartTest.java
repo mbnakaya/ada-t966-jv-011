@@ -18,12 +18,18 @@ public class ShopCartTest {
 
     @Test
     public void testCalculateShopCartTotalEmptyList() {
-        List<Item> items = List.of();
-        Exception result = Assertions.assertThrows(EmptyShopCartException.class, () -> new ShopCart(items).calculateTotal());
+        Exception result = Assertions.assertThrows(EmptyShopCartException.class, () -> new ShopCart().calculateTotal());
 
         Assertions.assertSame(EmptyShopCartException.class, result.getClass());
     }
 
     @Test
-    public void testCalculateShopCartTotalWithOutOfStock() {}
+    public void testCalculateShopCartTotalWithOutOfStock() {
+        ShopCart shopCart = new ShopCart();
+        shopCart.getItems().add(new Item(1, "Produto 1", 10, true));
+        shopCart.getItems().add(new Item(2, "Produto 2", 15, false));
+        Exception result = Assertions.assertThrows(ItemOutOfStockException.class, shopCart::calculateTotal);
+
+        Assertions.assertSame(ItemOutOfStockException.class, result.getClass());
+    }
 }
