@@ -14,5 +14,9 @@ Repositório auxiliar para módulo BE-JV-011 (Testes Automatizados I) da turma 9
 ### Testes de API (MVC)
 * [Gravação da aula](https://drive.google.com/file/d/1nWXqgDCz_G_ti1_AtDvjzPITCevZ9Ig3/view)
 
+### Test Driven Development
+* [Slides](https://docs.google.com/presentation/d/1haC8fLyrYsnkZleiyFykAg9ZM0XCfTLU6OzYAGhKTWk/edit?usp=sharing)
+* [Gravação da aula](https://drive.google.com/file/d/1LW8eJZem_dmrZWxkF8wIxEZ-BzxGi3dt/view)
+
 ## Trabalho final
 * [PDF](https://drive.google.com/file/d/1D_npCvHQgNXfvKYsOW3HZVshrBGpBHFs/view?usp=sharing)
