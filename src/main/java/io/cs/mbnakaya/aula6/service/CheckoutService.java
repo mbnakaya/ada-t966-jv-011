@@ -23,8 +23,14 @@ public class CheckoutService {
     }
 
     public Checkout updatePaymentMethod(Long id, PaymentMethod paymentMethod) {
-        return null;
+        Checkout checkout = repository.findById(id).orElseThrow();
+        checkout.setMethod(paymentMethod);
+
+        return checkout;
     }
 
-    public void delete(Long id) {}
+    public void delete(Long id) {
+        Checkout checkout = repository.findById(id).orElseThrow();
+        repository.delete(checkout);
+    }
 }
