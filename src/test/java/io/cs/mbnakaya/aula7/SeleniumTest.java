@@ -1,5 +1,6 @@
 package io.cs.mbnakaya.aula7;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -25,6 +26,11 @@ public class SeleniumTest {
         this.driver = new ChromeDriver(options);
     }
 
+    @AfterEach
+    public void afterTests() {
+        this.driver.quit();
+    }
+
     @Test
     public void testChrome() {
         driver.get("https://www.google.com.br");
@@ -37,7 +43,22 @@ public class SeleniumTest {
 
         assertTrue(searchResults.isDisplayed());
         assertThat(driver.getTitle()).startsWith("Editora Globo");
+    }
 
-        driver.quit();
+    @Test
+    public void testSauceDemo() {
+        driver.get("https://www.saucedemo.com/");
+
+        WebElement usernameBox = driver.findElement(By.id("user-name"));
+        usernameBox.sendKeys("standard_user");
+
+        WebElement passwordBox = driver.findElement(By.id("password"));
+        passwordBox.sendKeys("secret_sauce");
+        passwordBox.submit();
+
+        WebElement logo = driver.findElement(By.className("app_logo"));
+
+        assertTrue(logo.isDisplayed());
+        assertTrue(logo.getText().startsWith("Swag"));
     }
 }
