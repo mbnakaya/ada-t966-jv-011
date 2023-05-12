@@ -21,5 +21,8 @@ Repositório auxiliar para módulo BE-JV-011 (Testes Automatizados I) da turma 9
 ### TDD e Spring CRUD
 * [Gravação da aula](https://drive.google.com/file/d/1WZBeZVEw_mNYpD6UZR8ytLkN9sT5ec8M/view)
 
+### Testes de Integração
+* [Gravação da aula](https://drive.google.com/file/d/1IsOS0QHtwPYFAPVd-HkW4isQ-qWhLE_U/view)
+
 ## Trabalho final
 * [PDF](https://drive.google.com/file/d/1D_npCvHQgNXfvKYsOW3HZVshrBGpBHFs/view?usp=sharing)
